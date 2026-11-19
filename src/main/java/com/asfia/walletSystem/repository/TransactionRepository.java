@@ -1,0 +1,12 @@
+package com.asfia.walletSystem.repository;
+
+import com.asfia.walletSystem.entity.Transaction;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface TransactionRepository extends JpaRepository<Transaction, Long> {
+
+    Page<Transaction> findBySourceWalletIdOrDestinationWalletIdOrderByCreatedAtDesc
+            (Long sourceWalletId, Long destinationWalletId, Pageable pageable);
+}
